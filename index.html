@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarVibe Studio - Excelência em Estética Automotiva</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B00',
+                        primaryDark: '#E05D00',
+                        dark: '#1A1A1A',
+                        light: '#F8F8F8',
+                        accent: '#333333'
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* LOGO AREA */
+        .logo-container {
+            width: 180px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            color: #FF6B00;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        .logo:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: #FF6B00;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        .logo:hover:before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        
+        /* HERO SECTION */
+        .hero-overlay {
+            background: linear-gradient(90deg, rgba(26,26,26,0.9) 0%, rgba(26,26,26,0.7) 100%);
+        }
+        
+        /* SERVICE CARDS */
+        .service-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* NAVIGATION */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #FF6B00;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        /* WHATSAPP BUTTON */
+        .whatsapp-float {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* FORM STYLING */
+        .form-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        .form-title:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            bottom: -10px;
+            left: 0;
+            background-color: #FF6B00;
+        }
+    </style>
+</head>
+<body class="font-sans bg-light text-dark">
+    <!-- Header -->
+    <header class="fixed w-full bg-dark text-white z-50 shadow-md">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <!-- LOGO AREA -->
+                <div class="logo-container">
+                    <img src="https://i.postimg.cc/Gm7FHmjc/carvibe-logo-removebg-preview.png" alt="logo" height="100px" width="100px">
+                    <div class="logo">
+                        CARVIBE
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-white hover:text-primary font-medium uppercase text-sm tracking-wider">Início</a>
+                    <a href="#services" class="nav-link text-white hover:text-primary font-medium uppercase text-sm tracking-wider">Serviços</a>
+                    <a href="#gallery" class="nav-link text-white hover:text-primary font-medium uppercase text-sm tracking-wider">Galeria</a>
+                    <a href="#about" class="nav-link text-white hover:text-primary font-medium uppercase text-sm tracking-wider">Sobre</a>
+                    <a href="#contact" class="nav-link text-white hover:text-primary font-medium uppercase text-sm tracking-wider">Contato</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden focus:outline-none" id="mobile-menu-button">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div class="md:hidden hidden bg-dark py-2" id="mobile-menu">
+            <div class="container mx-auto px-6 flex flex-col space-y-3">
+                <a href="#home" class="nav-link text-white hover:text-primary font-medium uppercase text-sm tracking-wider py-2">Início</a>
+                <a href="#services" class="nav-link text-white hover:text-primary font-medium uppercase text-sm tracking-wider py-2">Serviços</a>
+                <a href="#gallery" class="nav-link text-white hover:text-primary font-medium uppercase text-sm tracking-wider py-2">Galeria</a>
+                <a href="#about" class="nav-link text-white hover:text-primary font-medium uppercase text-sm tracking-wider py-2">Sobre</a>
+                <a href="#contact" class="nav-link text-white hover:text-primary font-medium uppercase text-sm tracking-wider py-2">Contato</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 md:pt-40 md:pb-28">
+        <div class="absolute inset-0 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1494972308805-463d61949c2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80" 
+                 alt="Carro premium" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight">
+                    <span class="text-primary">Excelência</span> em Estética Automotiva
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-8">
+                    Transformamos seu veículo com técnicas profissionais e produtos premium para um acabamento impecável.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#contact" class="bg-primary hover:bg-primaryDark text-white px-8 py-4 rounded font-semibold transition duration-300 text-center">
+                        Agendar Serviço
+                    </a>
+                    <a href="#services" class="bg-transparent border-2 border-white hover:border-primary text-white hover:text-primary px-8 py-4 rounded font-semibold transition duration-300 text-center">
+                        Nossos Serviços
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Bar -->
+    <div class="bg-accent text-white py-4">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <!-- WHATSAPP -->
+                <div class="flex items-center">
+                    <i class="fab fa-whatsapp mr-3 text-xl text-primary"></i>
+                    <span class="font-medium">(54) 99625-1605</span>
+                </div>
+                
+                <!-- INSTAGRAM -->
+                <div class="flex items-center">
+                    <i class="fab fa-instagram mr-3 text-xl text-primary"></i>
+                    <span class="font-medium">@carvibestudio</span>
+                </div>
+                
+                <!-- LOCATION -->
+                <div class="flex items-center">
+                    <i class="fas fa-map-marker-alt mr-3 text-xl text-primary"></i>
+                    <span class="font-medium">Rua Albino Cavagnolli, 107 - Caxias do Sul</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Nossos <span class="text-primary">Serviços</span></h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+                <p class="max-w-2xl mx-auto mt-6 text-gray-600">
+                    Oferecemos serviços especializados para manter ou restaurar a beleza original do seu veículo.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-light rounded-lg overflow-hidden shadow-md">
+                    <div class="relative overflow-hidden h-56">
+                        <img src="https://i.pinimg.com/736x/bc/c5/68/bcc5684e55f9a2d32491b12ca011e779.jpg" 
+                             alt="Polimento" 
+                             class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Polimento Comercial</h3>
+                        <p class="text-gray-600 mb-4">
+                            Remoção profissional de riscos e imperfeições, restaurando o brilho original da pintura com acabamento espelhado.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-primary font-semibold">A partir de R$ 350</span>
+                            <a href="#contact" class="text-primary hover:text-primaryDark font-medium">Agendar →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-light rounded-lg overflow-hidden shadow-md">
+                    <div class="relative overflow-hidden h-56">
+                        <img src="https://i.pinimg.com/736x/9e/90/66/9e906617b30f3443f9b4434d2210a5fd.jpg" 
+                             alt="Vidro" 
+                             class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Proteção de Vidros</h3>
+                        <p class="text-gray-600 mb-4">
+                            Tratamento hidrofóbico avançado que repele água, aumentando visibilidade e segurança em condições climáticas adversas.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-primary font-semibold">A partir de R$ 100</span>
+                            <a href="#contact" class="text-primary hover:text-primaryDark font-medium">Agendar →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-light rounded-lg overflow-hidden shadow-md">
+                    <div class="relative overflow-hidden h-56">
+                        <img src="https://i.pinimg.com/736x/4c/9e/b5/4c9eb52e97e1f2b7a84b6f17259435fa.jpg" 
+                             alt="Estofados" 
+                             class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Higienização Completa</h3>
+                        <p class="text-gray-600 mb-4">
+                            Limpeza profunda de estofados, carpetes e painel com equipamentos profissionais, eliminando ácaros, bactérias e odores.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-primary font-semibold">A partir de R$ 150</span>
+                            <a href="#contact" class="text-primary hover:text-primaryDark font-medium">Agendar →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <a href="#contact" class="inline-block bg-dark hover:bg-primary text-white px-8 py-4 rounded font-semibold transition duration-300">
+                    Fale Conosco para Outros Serviços
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Nossos <span class="text-primary">Trabalhos</span></h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+                <p class="max-w-2xl mx-auto mt-6 text-gray-600">
+                    Confira alguns dos nossos trabalhos recentes e veja a transformação que podemos fazer no seu veículo.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://i.pinimg.com/736x/69/cf/b0/69cfb03b8a934492b9f53e398383fb9c.jpg" 
+                         alt="Trabalho 1" 
+                         class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <span class="text-white font-bold text-lg">Polimento Completo</span>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 2 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://i.pinimg.com/736x/e5/cf/c0/e5cfc0afa005076ae7805b4ce38f671f.jpg" 
+                         alt="Trabalho 2" 
+                         class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <span class="text-white font-bold text-lg">Higienização Interna</span>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 3 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://i.pinimg.com/736x/76/25/be/7625be90c3f0f54d777512ba58b05a0a.jpg" 
+                         alt="Trabalho 3" 
+                         class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <span class="text-white font-bold text-lg">Proteção de Pintura</span>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 4 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://i.pinimg.com/736x/1d/86/97/1d8697e25c080c7c504270487b8d0abc.jpg" 
+                         alt="Trabalho 4" 
+                         class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <span class="text-white font-bold text-lg">Detalhamento Premium</span>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 5 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://i.pinimg.com/736x/f8/9e/05/f89e05bfc33cf1e171153ea1ffa43709.jpg" 
+                         alt="Trabalho 5" 
+                         class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <span class="text-white font-bold text-lg">Lavagem de Motores</span>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 6 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://i.pinimg.com/736x/64/ee/b9/64eeb92570742586be5915782ed4a73c.jpg" 
+                         alt="Trabalho 6" 
+                         class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <span class="text-white font-bold text-lg">Remoção de Chuva Ácida</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+                    <div class="relative rounded-lg overflow-hidden shadow-xl">
+                        <img src="https://i.pinimg.com/736x/75/f0/54/75f054fac6705d651a7de9c57184b552.jpg" 
+                             alt="Equipe CarVibe"   
+                             class="w-full h-auto">
+                        <div class="absolute -bottom-6 -right-6 bg-primary text-white p-6 rounded-lg shadow-lg">
+                            <p class="text-3xl font-bold">Detalhamento </p>
+                            <p class="text-sm uppercase tracking-wider">Premium</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Sobre o <span class="text-primary">CarVibe Studio</span></h2>
+                    <div class="w-20 h-1 bg-primary mb-6"></div>
+                    
+                    <p class="text-gray-600 mb-6">
+                        No Carvibe Studio, a beleza do seu carro é nossa maior missão. Somos especializados em transformar veículos comuns em verdadeiras obras de arte sobre rodas, combinando técnica apurada, produtos de alta qualidade e um toque de paixão automotiva.
+                    </p>
+                    
+                    <p class="text-gray-600 mb-8">
+                        Aqui, cada detalhe importa: desde a limpeza minuciosa até o polimento perfeito, oferecendo serviços que realçam o brilho, protegem a pintura e prolongam a vida útil do seu automóvel. Seja para aquele cuidado diário ou um tratamento completo, o Carvibe Studio entrega excelência e resultado que você vê e sente.
+
+Seu carro merece o melhor cuidado. Seu estilo merece Carvibe.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex items-start">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                <i class="fas fa-medal text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-2">Qualidade Garantida</h4>
+                                <p class="text-gray-600 text-sm">Produtos premium e técnicas certificadas</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                <i class="fas fa-clock text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-2">Atendimento Rápido</h4>
+                                <p class="text-gray-600 text-sm">Serviços eficientes sem perder a qualidade</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                <i class="fas fa-star text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-2">Resultado Premium</h4>
+                                <p class="text-gray-600 text-sm">Acabamento impecável e duradouro</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                <i class="fas fa-shield-alt text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-2">Garantia</h4>
+                                <p class="text-gray-600 text-sm">Todos os nossos serviços possuem garantia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-primary text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">O Que Nossos <span class="text-dark">Clientes</span> Dizem</h2>
+                <div class="w-20 h-1 bg-dark mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white bg-opacity-10 rounded-lg p-6 backdrop-filter backdrop-blur-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-dark bg-opacity-30 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Roberto Silva</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-white text-opacity-90">
+                        "Levei meu carro para polimento e o resultado foi incrível! Parece um carro novo. A equipe foi muito profissional e atenciosa."
+                    </p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white bg-opacity-10 rounded-lg p-6 backdrop-filter backdrop-blur-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-dark bg-opacity-30 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Ana Paula</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-white text-opacity-90">
+                        "Fiz a higienização completa e adorei! Tiraram manchas que achava que nunca sairiam. Super recomendo o CarVibe Studio."
+                    </p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white bg-opacity-10 rounded-lg p-6 backdrop-filter backdrop-blur-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-dark bg-opacity-30 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Carlos Eduardo</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-white text-opacity-90">
+                        "O tratamento hidrofóbico nos vidros mudou minha vida na chuva. Visibilidade perfeita e o atendimento foi impecável."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-dark text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Entre em <span class="text-primary">Contato</span></h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+                <p class="max-w-2xl mx-auto mt-6 text-gray-300">
+                    Estamos prontos para atender você e seu veículo com excelência. Utilize nossos canais diretos ou visite nossa oficina.
+                </p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <h3 class="form-title text-2xl font-semibold mb-6">Informações</h3>
+                    
+                    <!-- WHATSAPP -->
+                    <div class="flex items-start mb-8">
+                        <div class="bg-primary bg-opacity-20 p-3 rounded-full mr-4">
+                            <i class="fab fa-whatsapp text-primary text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">WhatsApp</h4>
+                            <p class="text-gray-300">(54) 99625-1605</p>
+                            <a href="https://wa.me/5554996251605?text=Olá%20👋%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%20Carvibe%20🚗✨%2C%20Estética%20Automotiva." target="_blank" class="text-primary hover:text-primaryDark font-medium inline-block mt-2">
+                                Enviar mensagem <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- INSTAGRAM -->
+                    <div class="flex items-start mb-8">
+                        <div class="bg-primary bg-opacity-20 p-3 rounded-full mr-4">
+                            <i class="fab fa-instagram text-primary text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">Instagram</h4>
+                            <p class="text-gray-300">@carvibestudio</p>
+                            <a href="https://www.instagram.com/carvibe_studio/" target="_blank" class="text-primary hover:text-primaryDark font-medium inline-block mt-2">
+                                Visitar perfil <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- LOCATION -->
+                    <div class="flex items-start">
+                        <div class="bg-primary bg-opacity-20 p-3 rounded-full mr-4">
+                            <i class="fas fa-map-marker-alt text-primary text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">Endereço</h4>
+                            <p class="text-gray-300">Rua Albino Cavagnolli, 107</p>
+                            <p class="text-gray-300">Cidade Nova, Caxias do Sul - RS</p>
+                            <a href="https://maps.google.com/?q=Rua+Albino+Cavagnolli,+107+Cidade+Nova+Caxias+do+Sul" target="_blank" class="text-primary hover:text-primaryDark font-medium inline-block mt-2">
+                                Ver no mapa <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12">
+                        <h4 class="font-bold text-lg mb-4">Horário de Funcionamento</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between border-b border-gray-700 pb-2">
+                                <span class="text-gray-300">Segunda a Sexta</span>
+                                <span class="font-medium">07:30 - 18:00</span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-700 pb-2">
+                                <span class="text-gray-300">Sábado</span>
+                                <span class="font-medium">09:00 - 13:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Domingo</span>
+                                <span class="font-medium">Fechado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <h3 class="form-title text-2xl font-semibold mb-6">Visite Nossa Oficina</h3>
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                        <div class="h-64 w-full bg-gray-700 flex items-center justify-center">
+                            <i class="fas fa-map-marked-alt text-4xl text-primary"></i>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-bold text-xl mb-3">CarVibe Studio</h4>
+                            <p class="text-gray-300 mb-4">
+                                Venha conhecer nossa estrutura completa e equipe especializada. Estamos prontos para transformar seu veículo com os melhores serviços de estética automotiva.
+                            </p>
+                            <div class="flex items-center text-gray-400 mb-2">
+                                <i class="fas fa-phone-alt mr-2 text-primary"></i>
+                                <span>(54) 99625-1605</span>
+                            </div>
+                            <div class="flex items-center text-gray-400">
+                                <i class="fas fa-envelope mr-2 text-primary"></i>
+                                <span>studiocarvibe@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <div class="h-96 w-full">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3477.123456789012!2d-51.2327377!3d-29.1666242!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDEwJzAwLjAiUyA1McKwMTMnNTkuOSJX!5e0!3m2!1spt-BR!2sbr!4v1234567890123!5m2!1spt-BR!2sbr" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <!-- LOGO AREA -->
+                    <div class="logo-container mx-auto md:mx-0">
+                        <div class="logo">
+                            CARVIBE
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-400 max-w-xs text-center md:text-left">
+                        Excelência em estética automotiva com serviços premium para seu veículo.
+                    </p>
+                </div>
+                
+                <div class="mb-8 md:mb-0">
+                    <h4 class="font-bold text-lg mb-4 text-center md:text-left">Links Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li class="text-center md:text-left"><a href="#home" class="text-gray-400 hover:text-primary transition duration-300">Início</a></li>
+                        <li class="text-center md:text-left"><a href="#services" class="text-gray-400 hover:text-primary transition duration-300">Serviços</a></li>
+                        <li class="text-center md:text-left"><a href="#gallery" class="text-gray-400 hover:text-primary transition duration-300">Galeria</a></li>
+                        <li class="text-center md:text-left"><a href="#about" class="text-gray-400 hover:text-primary transition duration-300">Sobre</a></li>
+                        <li class="text-center md:text-left"><a href="#contact" class="text-gray-400 hover:text-primary transition duration-300">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="mb-8 md:mb-0">
+                    <h4 class="font-bold text-lg mb-4 text-center md:text-left">Contato</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center justify-center md:justify-start">
+                            <i class="fab fa-whatsapp mr-2 text-primary"></i>
+                            <span>(54) 99625-1605</span>
+                        </li>
+                        <li class="flex items-center justify-center md:justify-start">
+                            <i class="fab fa-instagram mr-2 text-primary"></i>
+                            <span>@carvibestudio</span>
+                        </li>
+                        <li class="flex items-center justify-center md:justify-start">
+                            <i class="fas fa-map-marker-alt mr-2 text-primary"></i>
+                            <span>Rua Albino Cavagnolli, 107</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400 text-sm">
+                    &copy; 2023 CarVibe Studio. Todos os direitos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5554996251605?text=Olá%20👋%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%20Carvibe%20🚗✨%2C%20Estética%20Automotiva." target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-xl hover:bg-green-600 transition duration-300 z-50 whatsapp-float">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Scroll reveal animation
+        window.addEventListener('scroll', revealOnScroll);
+        
+        function revealOnScroll() {
+            const elements = document.querySelectorAll('section, .service-card, .testimonial');
+            
+            for (let i = 0; i < elements.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = elements[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    elements[i].classList.add('animate-fadeIn');
+                }
+            }
+        }
+        
+        // Initialize scroll reveal
+        revealOnScroll();
+    </script>
+</body>
+</html>
